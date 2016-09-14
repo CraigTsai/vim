@@ -58,13 +58,34 @@ Plugin 'tpope/vim-fugitive'
 "YouComleteMe start"
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'SirVer/ultisnips'
-let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
-let g:ycm_extra_conf_vim_data = ['&filetype'] 
+Plugin 'scrooloose/syntastic'
+
+set runtimepath+=~/.vim/bundle/YouCompleteMe
+let g:ycm_collect_identifiers_from_tags_files = 1           " 开启 YCM 基于标签引擎
+let g:ycm_collect_identifiers_from_comments_and_strings = 1 " 注释与字符串中的内容也用于补全
+let g:syntastic_ignore_files=[".*\.py$"]
+let g:ycm_seed_identifiers_with_syntax = 1                  " 语法关键字补全
+let g:ycm_complete_in_comments = 1
 let g:ycm_confirm_extra_conf = 0
-let g:UltiSnipsSnippetsDir=["~/.vim/bundle/vim-snippets/UltiSnips"]
-let g:UltiSnipsExpandTrigger="<c-j>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+let g:ycm_key_list_select_completion = ['<c-n>', '<Down>']  " 映射按键, 没有这个会拦截掉tab, 导致其他插件的tab不能用.
+let g:ycm_key_list_previous_completion = ['<c-p>', '<Up>']
+let g:ycm_complete_in_comments = 1                          " 在注释输入中也能补全
+let g:ycm_complete_in_strings = 1                           " 在字符串输入中也能补全
+let g:ycm_collect_identifiers_from_comments_and_strings = 1 " 注释和字符串中的文字也会被收入补全
+let g:ycm_global_ycm_extra_conf='~/.vim/.ycm_extra_conf.py'
+let g:ycm_show_diagnostics_ui = 1                           " 啟用语法检查
+"let g:ycm_min_num_of_chars_for_completion=2                 "
+"从第2个键入字符就开始罗列匹配项
+
+Plugin 'dkprice/vim-easygrep'
+"-----EasyGrep-----
+let EasyGrepMode = 2        "根據文件類型搜索相應文件
+let EasyGrepRecursive = 1   "遞歸搜索
+let EasyGrepCommand = 1     "使用grep
+let EasyGrepJumpToMatch = 0 "不要跳轉
+
+
+Plugin 'mileszs/ack.vim'
 
 "YouComleteMe end"
 
