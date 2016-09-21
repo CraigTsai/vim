@@ -59,6 +59,16 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'SirVer/ultisnips'
 Plugin 'scrooloose/syntastic'
+"Plugin 'Rip-Rip/clang_complete'
+let g:clang_library_path='/usr/lib/llvm-3.8/lib/libclang-3.8.so'
+" old version
+if !empty(glob("~/.vim/.ycm_extra_conf.py"))
+    let g:ycm_global_ycm_extra_conf ="~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py"
+endif
+" new version
+if !empty(glob("~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"))
+    let g:ycm_global_ycm_extra_conf ="~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
+endif
 
 set runtimepath+=~/.vim/bundle/YouCompleteMe
 let g:ycm_collect_identifiers_from_tags_files = 1           " 开启 YCM 基于标签引擎
@@ -72,9 +82,12 @@ let g:ycm_key_list_previous_completion = ['<c-p>', '<Up>']
 let g:ycm_complete_in_comments = 1                          " 在注释输入中也能补全
 let g:ycm_complete_in_strings = 1                           " 在字符串输入中也能补全
 let g:ycm_collect_identifiers_from_comments_and_strings = 1 " 注释和字符串中的文字也会被收入补全
-let g:ycm_global_ycm_extra_conf='~/.vim/.ycm_extra_conf.py'
 let g:ycm_show_diagnostics_ui = 1                           " 啟用语法检查
-"let g:ycm_min_num_of_chars_for_completion=2                 "
+:let mapleader = "-"
+nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+let g:ycm_min_num_of_chars_for_completion=2                 
+let g:ycm_key_invoke_completion = '<C-e>'
+
 "从第2个键入字符就开始罗列匹配项
 
 Plugin 'dkprice/vim-easygrep'
@@ -105,7 +118,9 @@ let NERDTreeWinPos="right"
 
 "using mouse control"
 " set mouse=a
-set mouse=nv
+set mouse=n
+noremap <LeftDrag> <LeftMouse>
+noremap! <LeftDrag> <LeftMouse>
 
 " vim-airline Setting start"
 " set status line
@@ -114,6 +129,15 @@ set laststatus=2
 let g:airline_powerline_fonts = 1
 set t_Co=256
 let g:airline_theme='wombat'
+set cursorcolumn
+set cursorline
+
+Plugin 'terryma/vim-multiple-cursors'
+
+" 插入匹配括号
+inoremap ( ()<LEFT>
+inoremap [ []<LEFT>
+inoremap { {}<LEFT>
 
 set tags=tags;
 
